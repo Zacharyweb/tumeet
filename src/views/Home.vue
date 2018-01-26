@@ -102,25 +102,38 @@ export default {
         if(this.sliderIndex == index){
            // 过处于展开状态
           if(offsetLeft == -150){
+             // 关闭动画
              this.sliderIndex = -1;
+
              setTimeout(()=>{
-                 this.resetSliderData();
+                this.resetSliderData();
              },500)
+
              return;
           }
         }else{
-          this.resetSliderData();
+           // 否则直接先把位置重置为0
+           this.resetSliderData();
         };
 
-        let start  = e.touches[0].clientX;
+        let start = e.touches[0].clientX;
+
+        // 更改当前操作对象
         this.sliderIndex = index;
+
+        // 记录touch初始位置
         this.startLeft = start;
+
+        // 记录对象touch是左偏移位置
         this.offsetLeft = offsetLeft;
+
+        // 触摸点跟左偏移位置之间的距离
         this.beginOffset = start - offsetLeft;
         
         document.body.addEventListener('touchmove',this.lockWindow);
     },
     handleTouchMove(e,index){
+      
         let slideLeft = e.touches[0].clientX - this.beginOffset;
         if( slideLeft < -150){
             slideLeft = -150;
