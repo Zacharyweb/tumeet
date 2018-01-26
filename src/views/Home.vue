@@ -1,39 +1,39 @@
 <template>
   <div>
       <search-bar :on-focus="focusSearchBar" :show-cancel="false"></search-bar>
-      <v-scroll :on-refresh="onRefresh" :bottom="60" :top="60">
-        <div class="index-notice" v-if="!isNewUser">
-          <img class="expert-avatar" src="../../static/timg.jpeg">
-          <p class="notice-text">专家xxx已同意解答问题，并约定了时间</p>
-          <span class="todetail-icon iconfont icon-jiantou-copy-copy"></span>
-        </div>
-        <div class="new-user-notice " v-if="isNewUser">
-          <span class="todetail-icon iconfont icon-icon-test"></span>
-          <p class="notice-text">新人有好礼，专家半价咨询~</p>
-        </div>
-         <category-bar :tab-bar-arr='tabBarArr'></category-bar>
-         <div class="recommend-expert">
-           <h3 class="recommend-text">为您推荐</h3>
-         </div>
-         <div class="expert-block">
-             <h4>财务专家</h4>
-             <ul class="expert-list">
-               <li class="expert-item" @click="toExpertDetail(1)">
-                 <img class="expert-avatar" src="../../static/timg.jpeg">
-                 <div class="expert-info">
-                   <p class="expert-topic text-ellipsis">制定的话题话题制定的话题话题制定的话题话题制定的话题话题制定的话题话题</p>
-                   <p class="expert-msg text-ellipsis">
-                      <b class="expert-name">威震天</b>&nbsp;&nbsp;幽谷数据有限公司&nbsp;&nbsp;著名导弹专家
-                   </p>
-                   <p class="personal-tag">
-                     <span class="tag-item">风趣</span>
-                     <span class="tag-item">幽默</span>
-                     <span class="tag-item">专业知识牛</span>
-                   </p>
-                 </div>
-               </li>
-             </ul>
-         </div>
+      <v-scroll :on-refresh="onRefresh" :bottom="50" :top="60">
+        
+        <ul class="slider_edit_list">
+
+          <li class="slider_edit_item" v-for="(item,index) in chatArr">
+            <div class="slider_edit_item_panel" 
+                 :class="{'lock_close': sliderIndex != index }"
+                 :style = "{ left: slideLeft + 'px' }"
+                 ref="sliderEditItemPanel"
+                 @touchstart="handleTouchStart($event,index)"
+                 @touchmove="handleTouchMove($event,index)"
+                 @touchend="handleTouchEnd($event,index)"
+             >
+              <div class="chat_item">
+                <img class="user_avater" src="../../static/timg.jpeg">
+                <div class="chat_content">
+                  <p class="chat_title text-ellipsis">江帆：上海房产过户手续准备资金</p>
+                  <p class="chat_abstract text-ellipsis">跳转界面的设计与更新</p>
+                  <span class="chat_time">2017/8/6</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="edit_btns">
+              <div class="edit_btn btn_red">删除</div>
+              <div class="edit_btn btn_blue">存档</div>
+            </div>
+
+          </li>
+    <!--       <li class="slider_edit_item"></li>
+          <li class="slider_edit_item"></li>
+          <li class="slider_edit_item"></li> -->
+        </ul>
         
       </v-scroll>
     <bottom-nav :nav-index="0"></bottom-nav>  
@@ -61,21 +61,21 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      arr:[],
-      isNewUser:true,
-      tabBarArr:[
-        {name:'法务',icon:{'icon-zanfuwutubiao06-copy':true},color:'#7ed321',type:1},
-        {name:'财务',icon:{'icon-caiwu1':true},color:'#f5a623',type:2},
-        {name:'工商',icon:{'icon-gongshang1':true},color:'#f56423',type:3},
-        {name:'税收',icon:{'icon-shuiwu':true},color:'#f5be3f',type:4},
-        {name:'海关',icon:{'icon-haiguan':true},color:'#51a1ff',type:5}
-      ]
+
+      slideLeft:0,
+      beginOffset:0,
+      offsetLeft:0,
+      startLeft:0,
+
+      sliderTimer:null,
+      sliderIndex:-1,
+
+      chatArr:[1,1,1,1,1]
+
     }
   },
   methods:{
     onRefresh(done){
-      console.log('ggggggg');
       setTimeout(()=>{
         done();
       },1000)
@@ -84,66 +84,196 @@ export default {
       e.preventDefault();
       this.$router.push('search')
     },
-    toExpertDetail(id){
-      this.$router.push('expert/'+id)
 
+    lockWindow(e){
+        // e.preventDefault();
+    },
+    resetSliderData(){
+      this.slideLeft = 0;
+    },
+    handleTouchStart(e,index){
+        // this.resetSliderData();
+        
+        clearInterval(this.sliderTimer);
+        // 获取当前对象的偏移位置
+        let offsetLeft = e.currentTarget.offsetLeft;
+
+        // 如果之前操作的对象是当前对象
+        if(this.sliderIndex == index){
+           // 过处于展开状态
+          if(offsetLeft == -150){
+             this.sliderIndex = -1;
+             setTimeout(()=>{
+                 this.resetSliderData();
+             },500)
+             return;
+          }
+        }else{
+          this.resetSliderData();
+        };
+
+        let start  = e.touches[0].clientX;
+        this.sliderIndex = index;
+        this.startLeft = start;
+        this.offsetLeft = offsetLeft;
+        this.beginOffset = start - offsetLeft;
+        
+        document.body.addEventListener('touchmove',this.lockWindow);
+    },
+    handleTouchMove(e,index){
+        let slideLeft = e.touches[0].clientX - this.beginOffset;
+        if( slideLeft < -150){
+            slideLeft = -150;
+        };
+        if(slideLeft > 0){
+            slideLeft = -0;
+        };
+        this.slideLeft = slideLeft;
+        window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+    },
+    handleTouchEnd(e,index){
+        let that = this;
+        let endLeft = e.changedTouches[0].clientX;
+        let moveLength = this.startLeft - endLeft;
+
+        if(moveLength > 20){
+            if(this.slideLeft != -150){
+                this.itemSlide('open');
+            };
+        }else if(moveLength < -20){
+            if(this.slideLeft != 0){
+                this.itemSlide('close');
+            };
+        }else{
+            if(moveLength >= 0 && this.offsetLeft == 0){
+               this.itemSlide('close');
+            };
+            if(moveLength < 0 && this.offsetLeft == -150){
+               this.itemSlide('open');
+            };
+        };
+        document.body.removeEventListener('touchmove',this.lockWindow);
+    },
+    itemSlide:function(type){
+        let that = this;
+        if(type == 'open'){
+          this.sliderTimer = setInterval(function(){
+              that.slideLeft--;
+              if(that.slideLeft <= -150){
+                 that.slideLeft = -150;
+                 clearInterval(that.sliderTimer);   
+              };
+          },1);
+        };
+        if(type == 'close'){
+          this.sliderTimer = setInterval(function(){
+              that.slideLeft++;
+              if(that.slideLeft >= 0){
+                 that.slideLeft = 0;
+                 clearInterval(that.sliderTimer);   
+              };
+          },1);
+        };
     }
   },
   mounted(){
-    document.title = '首页';
+     document.title = '首页';
+     // var sliderEditItemPanel = this.$refs.sliderEditItemPanel;
+     // console.log(sliderEditItemPanel);
+     // console.log(sliderEditItemPanel.offsetLeft);
   }
 }
 </script>
 <style scoped>
-.index-notice{
-  padding: 0 15px;
-  display: flex;
-  height: 60px;
-  align-items: center;
-  justify-content: space-between; 
-  position: relative;
-}
-.index-notice .notice-text{
-  font-size: 15px;
-}
+    .slider_edit_list{
+      width: 100%;
+      overflow: hidden;
+    }
+    .slider_edit_list .slider_edit_item{
+      height: 67px;
+      border-bottom: 1px solid #595856;
+      position: relative;
+    }    
+    .slider_edit_list .slider_edit_item .slider_edit_item_panel{
+      box-sizing: border-box;
+      padding:0 7.5px;
+      position: absolute;
+      top: 0;
+      /*left: 0;*/
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 2;
+      background-color: #fff;
+    }
+    .slider_edit_list .slider_edit_item .slider_edit_item_panel.lock_close{
+     transition: all 0.5s;
+     left:0!important;
+    }
 
-.index-notice .expert-avatar{
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-.index-notice .todetail-icon{
-  font-size: 24px;
-}
-.new-user-notice{
-  padding: 0 15px;
-  display: flex;
-  height: 60px;
-  align-items: center;
-  position: relative;
-}
-.new-user-notice .iconfont{
-  color: #FF575B;
-  font-size: 30px;
-  padding-right: 10px;
-}
-.recommend-expert{
-  background-color: #fff;
-  padding: 20px;
-  border-top: 1px solid #e6e6e6;
-  border-bottom: 1px solid #e6e6e6;
-  margin-top: 10px;
-}
-.recommend-expert h3{
-  font-size: 18px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.recommend-expert h3 span{
-  height: 2px;
-  flex: 1;
-  background-color: #55cbc4;
-}
+
+    .slider_edit_list .slider_edit_item .edit_btns{
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      background-color: #fff;
+      display: flex;
+    }
+    .slider_edit_list .slider_edit_item .edit_btns .edit_btn{
+      box-sizing:border-box;
+      width: 75px;
+      color: #fff;
+      font-size: 20px;
+      text-align: center;
+      line-height: 75px;
+    }
+    .btn_red{
+        background-color: #d70012;
+    }
+    .btn_blue{
+        background-color: #67bfe7;
+    }
+
+
+
+    .chat_item{
+      display: flex;
+      align-items: center;
+      flex:1;
+    }
+    .chat_item .user_avater{
+      width: 50px;
+      height: 50px;
+      border-radius: 4px;
+    }
+    .chat_item .chat_content{
+      padding-left: 7.5px;
+      flex: 1;
+      position: relative;
+    }
+    .chat_item .chat_title{
+      width: 225px;
+      font-size: 16px;
+      color: #222;
+      margin-bottom: 6px;
+    }
+    .chat_item .chat_abstract{
+      width: 225px;
+      font-size: 14px;
+      color: #999;
+    }
+    .chat_item .chat_time{
+      position: absolute;
+      right: 0;
+      top:2px;
+      color: #a3a3a3;
+      font-size: 14px;
+    }
+
+
+
+  
 </style>
