@@ -103,13 +103,11 @@ export default {
            // 过处于展开状态
           if(offsetLeft == -150){
              // 关闭动画
-             this.sliderIndex = -1;
-
-             setTimeout(()=>{
-                this.resetSliderData();
-             },500)
-
-             return;
+             // this.sliderIndex = -1;
+             // setTimeout(()=>{
+             //    this.resetSliderData();
+             // },500)
+             // return;
           }
         }else{
            // 否则直接先把位置重置为0
@@ -149,6 +147,7 @@ export default {
         let endLeft = e.changedTouches[0].clientX;
         let moveLength = this.startLeft - endLeft;
 
+
         if(moveLength > 20){
             if(this.slideLeft != -150){
                 this.itemSlide('open');
@@ -158,7 +157,10 @@ export default {
                 this.itemSlide('close');
             };
         }else{
-            if(moveLength >= 0 && this.offsetLeft == 0){
+            if(moveLength == 0){
+                console.log('打开聊天'+index);    
+            };
+            if(moveLength > 0 && this.offsetLeft == 0){
                this.itemSlide('close');
             };
             if(moveLength < 0 && this.offsetLeft == -150){
