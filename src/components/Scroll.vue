@@ -82,7 +82,9 @@
         touching: false,
         infiniteLoading: true,
         isNoMore:false,
-        isNoData:false
+        isNoData:false,
+
+        scrollTimer:null
       }
     },
     methods: {
@@ -143,9 +145,17 @@
         }
       },
       onScroll(e) {
+        if(this.scrollTimer){
+          clearInterval(this.scrollTimer);
+        };
+        this.scrollTimer = setTimeout(()=>{
+          this.$emit('listscroll');
+        },50);
+
         if (!this.enableInfinite || this.infiniteLoading || this.isNoMore || this.isNoData) {
             return
         }
+        
         const bottomTip = this.$refs.bottomTip
         const windowHeight = window.screen.height
         const top = bottomTip.getBoundingClientRect().top

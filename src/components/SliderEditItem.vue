@@ -1,35 +1,136 @@
 <template>
-  
+  <div class="slider_edit_item_panel" 
+       :class="{'lock_close': sliderIndex != keyId }"
+       :style = "{ left: slideLeft + 'px' }"
+       ref="sliderEditItemPanel"
+       @touchstart="handleTouchStart($event,keyId)"
+       @touchmove="handleTouchMove($event,keyId)"
+       @touchend="handleTouchEnd($event,keyId)"
+  >
+  <slot>暂未设置内容</slot>
+  </div>
 </template>
 <script>
 import T from '../tool/tool'
 export default {
   name: 'SliderEditItem',
   props:{
-     bottom:{
+     keyId:{
         type: Number,
-        default: 0
+        required: true
+      },
+      sliderIndex:{
+        type: Number,
+        default:-1
       }
     },
-   
   data () {
     return {
-      selectedIndex:-1,
-      isClose:false
+      slideLeft:0,
+      beginOffset:0,
+      offsetLeft:0,
+      startLeft:0,
+      sliderTimer:null,
     }
   },
   methods:{
-   close(){
-    this.isClose = true;
-    this.$emit('close');
-   },
-   toNext(){
-    if(this.selectedIndex == -1){
-      T.showToast({text:'请先选择一个话题'});
-      return;
+    resetSliderData(){
+      this.slideLeft = 0;
+    },
+    handleTouchStart(e,index){
+        // this.resetSliderData();
+        clearInterval(this.sliderTimer);
+        // 获取当前对象的偏移位置
+        let offsetLeft = e.currentTarget.offsetLeft;
+        // 如果之前操作的对象是当前对象
+        if(this.sliderIndex == index){
+           // 过处于展开状态
+          if(offsetLeft == -150){
+             // 关闭动画
+             // this.sliderIndex = -1;
+             // setTimeout(()=>{
+             //    this.resetSliderData();
+             // },500)
+             // return;
+          }
+        }else{
+           // 否则直接先把位置重置为0
+           this.resetSliderData();
+        };
+        let start = e.touches[0].clientX;
+        // 更改当前操作对象
+     
+        // this.sliderIndex = index;
+        this.$emit('update:sliderIndex', index);
+
+        // 记录touch初始位置
+        this.startLeft = start;
+        // 记录对象touch是左偏移位置
+        this.offsetLeft = offsetLeft;
+        // 触摸点跟左偏移位置之间的距离
+        this.beginOffset = start - offsetLeft;
+        document.body.addEventListener('touchmove',this.lockWindow);
+    },
+    handleTouchMove(e,index){
+      
+        let slideLeft = e.touches[0].clientX - this.beginOffset;
+        if( slideLeft < -150){
+          slideLeft = -150;
+        };
+        if(slideLeft > 0){
+          slideLeft = -0;
+        };
+        this.slideLeft = slideLeft;
+        window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+    },
+    handleTouchEnd(e,index){
+        let that = this;
+        let endLeft = e.changedTouches[0].clientX;
+        let moveLength = this.startLeft - endLeft;
+        if(moveLength > 20){
+            if(this.slideLeft != -150){
+                this.itemSlide('open');
+            };
+        }else if(moveLength < -20){
+            if(this.slideLeft != 0){
+                this.itemSlide('close');
+            };
+        }else{
+            if(moveLength == 0){
+                if(this.offsetLeft == 0){
+                   this.$emit('onlytap',index);
+                }     
+            };
+            if(moveLength > 0 && this.offsetLeft == 0){
+               this.itemSlide('close');
+            };
+            if(moveLength < 0 && this.offsetLeft == -150){
+               this.itemSlide('open');
+            };
+        };
+        document.body.removeEventListener('touchmove',this.lockWindow);
+    },
+    itemSlide:function(type){
+        let that = this;
+        if(type == 'open'){
+          this.sliderTimer = setInterval(function(){
+              that.slideLeft--;
+              if(that.slideLeft <= -150){
+                 that.slideLeft = -150;
+                 clearInterval(that.sliderTimer);   
+              };
+          },1);
+        };
+        if(type == 'close'){
+          this.sliderTimer = setInterval(function(){
+              that.slideLeft++;
+              if(that.slideLeft >= 0){
+                 that.slideLeft = 0;
+                 clearInterval(that.sliderTimer);   
+              };
+          },1);
+        };
     }
-    this.$emit('next',this.selectedIndex);
-   }
     
   },
   mounted(){
@@ -40,100 +141,21 @@ export default {
 </script>
 
 <style scoped>
-  .panel-mask{
-     position: fixed;
-     left: 0;
-     top: 0;
-     width: 100%;
-     height: 100%;
-     background-color: rgba(0,0,0,0.5);
-     text-align: center;
-     box-sizing: border-box;
-     color: #666;
-     z-index: 9999;
-  }
-  .topic-list-panel{
+  .slider_edit_item_panel{
+    box-sizing: border-box;
+    padding:0 7.5px;
     position: absolute;
-    bottom: 0;
-    left: 0;
+    top: 0;
     width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
     background-color: #fff;
   }
-  .topic-list-panel .select-topic-tips{
-    padding:15px 20px;
-    border-bottom: 1px solid #e6e6e6; 
-  }
-  .topic-list-panel .topic-list{
-    padding: 0 20px;
-  }
-  .topic-list-panel .topic-item{
-    padding: 15px 0;
-    position: relative;
-  }
-  .topic-list-panel .topic-item .selected-icon{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #55cbc4;
-    right: 20px;
-    font-size: 30px;
-    display: none;
-
-  }
-  .topic-list-panel .topic-item.active .selected-icon{
-    display: block;
-  }
-  .topic-list-panel .topic-item+.topic-item{
-    border-top: 1px solid #e6e6e6;
-    
-  }
-    
-  .topic-list-panel .topic-item .topic-name{
-    line-height: 1.6;
-    margin-bottom: 10px;
-    text-align: left;
-  }
-  .topic-list-panel .topic-item .topic-cost{
-    display: flex;
-    font-size: 14px;
-  }
-  .topic-list-panel .topic-item .topic-price{
-    color: #E64340;
-    margin-right: 10px;
-  }
-  .topic-list-panel .topic-item .topic-price i{
-    font-size: 18px;
-  }
-  .topic-list-panel .topic-item .topic-duration{
-    color: #666;
-    line-height: 22px;
-  }
-  .slide-in-bottom{
-     -webkit-animation: slideInBottom 0.3s;
-     animation:slideInBottom 0.3s;
-  }
-  @keyframes slideInBottom{
-      from{
-          transform: translateY(100%);
-          opacity: 0.3;
-      }
-      to{
-          transform: translateY(0);
-          opacity: 1;
-      }
-  }
-  .slide-out-bottom{
-     -webkit-animation: slideOutBottom 0.3s;
-     animation:slideOutBottom 0.3s;
-  }
-  @keyframes slideOutBottom{
-      from{
-          transform: translateY(0);
-          opacity: 0.3;
-      }
-      to{
-          transform: translateY(100%);
-          opacity: 1;
-      }
+  .slider_edit_item_panel.lock_close{
+   transition: all 0.5s;
+   left:0!important;
   }
 </style>

@@ -1,7 +1,23 @@
 <template>
-  <div class="header-nav">
-    <span v-if="hasReturnIcon" class="return-icon iconfont icon-jiantou-" @click="returnBack"></span>
-    <h2>{{title}}</h2>        
+  <div class="header-nav-wrap">
+      <div class="header-nav">
+        <div class="header-nav-sec header-nav-left">
+            <slot name="left">
+              <span v-if="hasReturnIcon" class="return-icon iconfont icon-jiantou-" @click="returnBack"></span>
+            </slot>
+        </div>
+        <div class="header-nav-sec header-nav-center">
+            <slot name="center">
+               <h2>{{title}}</h2>
+            </slot>
+        </div>
+        <div class="header-nav-sec header-nav-right">
+            <slot name="right">
+               
+            </slot>
+        </div>      
+      </div>
+      <div class="header-nav-shim"></div>
   </div>
 </template>
 
@@ -11,16 +27,16 @@ export default {
   props: {
     title: {
       type: String,
-      default: '未设置标题'
+      default: ''
     },
     hasReturnIcon: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   data () {
     return {
-   
+         
     }
   },
   methods:{
@@ -33,22 +49,56 @@ export default {
 
 <style scoped>
   .header-nav{
-    position: relative;
+    box-sizing: border-box;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top:0;
     height: 50px;
-    background-color: #55cbc4;
+    padding:15px;
+    background-color: #67bfe7;
+    display: flex;
+    justify-content: space-between;
+  }
+  .header-nav-shim{
+    height: 50px;
+  }
+  .header-nav img{
+    height: 20px;
+    width: auto;
   }
   .header-nav h2{
-    line-height: 50px;
-    text-align: center;
-    font-size: 20px;
-    color:#fff;
+    font-size: 18px;
+    line-height: 20px;
+
+  }
+  .header-nav .header-nav-sec{
+     position: absolute;
+     height: 20px;
+     top:50%;
+     margin-top: -10px;
+     color: #fff;
+     line-height: 20px;
+     display: flex;
+     align-items: center;
+  }
+
+  .header-nav .header-nav-left{
+    left: 15px;
   }
   .header-nav .return-icon{
     position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 0;
+    top: 0;
     color:#fff;
-    font-size: 24px;
+    font-size: 20px;
+  }
+
+  .header-nav .header-nav-center{
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .header-nav .header-nav-right{
+      right: 15px;
   }
 </style>

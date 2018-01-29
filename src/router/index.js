@@ -2,6 +2,16 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Demo from '@/views/Demo'
 import Home from '@/views/Home'
+import CreateChat from '@/views/CreateChat'
+
+
+
+
+
+
+
+
+
 import Found from '@/views/Found'
 import Mine from '@/views/Mine'
 import SearchResult from '@/views/SearchResult'
@@ -42,6 +52,17 @@ export default new Router({
       name: 'Home',
       component: Home
     },
+    // 发起对话
+    {
+      path: '/createChat',
+      name: 'CreateChat',
+      component: CreateChat
+    },
+
+
+
+
+
     //发现
     {
       path: '/found',

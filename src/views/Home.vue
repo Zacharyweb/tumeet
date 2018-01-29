@@ -1,28 +1,29 @@
 <template>
   <div>
+    <header-nav :title="'首页'">
+      <div slot="center" class="custom_nav_center">
+        <span class="new_msg_num">5</span>
+        <img  src="../assets/img/tumeet_icon.png"/>
+      </div>  
+       <img slot="right" src="../assets/img/add_circle.png" @click="createChat"/>
+    </header-nav>
       <search-bar :on-focus="focusSearchBar" :show-cancel="false"></search-bar>
-      <v-scroll :on-refresh="onRefresh" :bottom="50" :top="60">
+      <v-scroll :on-refresh="onRefresh" :bottom="50" :top="90">
         
         <ul class="slider_edit_list">
 
           <li class="slider_edit_item" v-for="(item,index) in chatArr">
-            <div class="slider_edit_item_panel" 
-                 :class="{'lock_close': sliderIndex != index }"
-                 :style = "{ left: slideLeft + 'px' }"
-                 ref="sliderEditItemPanel"
-                 @touchstart="handleTouchStart($event,index)"
-                 @touchmove="handleTouchMove($event,index)"
-                 @touchend="handleTouchEnd($event,index)"
-             >
-              <div class="chat_item">
-                <img class="user_avater" src="../../static/timg.jpeg">
-                <div class="chat_content">
-                  <p class="chat_title text-ellipsis">江帆：上海房产过户手续准备资金</p>
-                  <p class="chat_abstract text-ellipsis">跳转界面的设计与更新</p>
-                  <span class="chat_time">2017/8/6</span>
+            <slider-edit-item :key-id="index" :slider-index.sync="sliderIndex" @onlytap="toChatRoom">
+                <div class="chat_item">
+                  <img class="user_avater" src="../../static/timg.jpeg">
+                  <div class="chat_content">
+                    <p class="chat_title text-ellipsis">江帆：上海房产过户手续准备资金</p>
+                    <p class="chat_abstract text-ellipsis">跳转界面的设计与更新</p>
+                    <span class="chat_time">2017/8/6</span>
+                    <span class="new_msg_num">5</span>
+                  </div>
                 </div>
-              </div>
-            </div>
+            </slider-edit-item>
 
             <div class="edit_btns">
               <div class="edit_btn btn_red">删除</div>
@@ -30,9 +31,6 @@
             </div>
 
           </li>
-    <!--       <li class="slider_edit_item"></li>
-          <li class="slider_edit_item"></li>
-          <li class="slider_edit_item"></li> -->
         </ul>
         
       </v-scroll>
@@ -41,10 +39,11 @@
 </template>
 
 <script>
+
 import HeaderNav from '../components/HeaderNav.vue'
 import SearchBar  from '../components/SearchBar.vue'
-import TabBar  from '../components/TabBar.vue'
-import CategoryBar  from '../components/CategoryBar.vue'
+import SliderEditItem  from '../components/SliderEditItem.vue'
+
 import Scroll  from '../components/Scroll.vue'
 import BottomNav from '../components/BottomNav.vue'
 import T from '../tool/tool'
@@ -52,26 +51,17 @@ import T from '../tool/tool'
 export default {
   name: 'Home',
   components:{
+    'header-nav': HeaderNav,
     'v-scroll': Scroll,
     'search-bar':SearchBar,
-    'tab-bar':TabBar,
-    'category-bar':CategoryBar,
+
     'bottom-nav': BottomNav,
-    'header-nav': HeaderNav,
+    'slider-edit-item':SliderEditItem
   },
   data () {
     return {
-
-      slideLeft:0,
-      beginOffset:0,
-      offsetLeft:0,
-      startLeft:0,
-
-      sliderTimer:null,
       sliderIndex:-1,
-
       chatArr:[1,1,1,1,1]
-
     }
   },
   methods:{
@@ -84,122 +74,40 @@ export default {
       e.preventDefault();
       this.$router.push('search')
     },
-
-    lockWindow(e){
-        // e.preventDefault();
+    createChat(){
+      this.$router.push({name:'CreateChat'});
     },
-    resetSliderData(){
-      this.slideLeft = 0;
-    },
-    handleTouchStart(e,index){
-        // this.resetSliderData();
-        
-        clearInterval(this.sliderTimer);
-        // 获取当前对象的偏移位置
-        let offsetLeft = e.currentTarget.offsetLeft;
-
-        // 如果之前操作的对象是当前对象
-        if(this.sliderIndex == index){
-           // 过处于展开状态
-          if(offsetLeft == -150){
-             // 关闭动画
-             // this.sliderIndex = -1;
-             // setTimeout(()=>{
-             //    this.resetSliderData();
-             // },500)
-             // return;
-          }
-        }else{
-           // 否则直接先把位置重置为0
-           this.resetSliderData();
-        };
-
-        let start = e.touches[0].clientX;
-
-        // 更改当前操作对象
-        this.sliderIndex = index;
-
-        // 记录touch初始位置
-        this.startLeft = start;
-
-        // 记录对象touch是左偏移位置
-        this.offsetLeft = offsetLeft;
-
-        // 触摸点跟左偏移位置之间的距离
-        this.beginOffset = start - offsetLeft;
-        
-        document.body.addEventListener('touchmove',this.lockWindow);
-    },
-    handleTouchMove(e,index){
-      
-        let slideLeft = e.touches[0].clientX - this.beginOffset;
-        if( slideLeft < -150){
-            slideLeft = -150;
-        };
-        if(slideLeft > 0){
-            slideLeft = -0;
-        };
-        this.slideLeft = slideLeft;
-        window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
-    },
-    handleTouchEnd(e,index){
-        let that = this;
-        let endLeft = e.changedTouches[0].clientX;
-        let moveLength = this.startLeft - endLeft;
-
-
-        if(moveLength > 20){
-            if(this.slideLeft != -150){
-                this.itemSlide('open');
-            };
-        }else if(moveLength < -20){
-            if(this.slideLeft != 0){
-                this.itemSlide('close');
-            };
-        }else{
-            if(moveLength == 0){
-                console.log('打开聊天'+index);    
-            };
-            if(moveLength > 0 && this.offsetLeft == 0){
-               this.itemSlide('close');
-            };
-            if(moveLength < 0 && this.offsetLeft == -150){
-               this.itemSlide('open');
-            };
-        };
-        document.body.removeEventListener('touchmove',this.lockWindow);
-    },
-    itemSlide:function(type){
-        let that = this;
-        if(type == 'open'){
-          this.sliderTimer = setInterval(function(){
-              that.slideLeft--;
-              if(that.slideLeft <= -150){
-                 that.slideLeft = -150;
-                 clearInterval(that.sliderTimer);   
-              };
-          },1);
-        };
-        if(type == 'close'){
-          this.sliderTimer = setInterval(function(){
-              that.slideLeft++;
-              if(that.slideLeft >= 0){
-                 that.slideLeft = 0;
-                 clearInterval(that.sliderTimer);   
-              };
-          },1);
-        };
+    toChatRoom(index){
+      console.log('去聊天室'+index);
     }
+   
   },
   mounted(){
-     document.title = '首页';
-     // var sliderEditItemPanel = this.$refs.sliderEditItemPanel;
-     // console.log(sliderEditItemPanel);
-     // console.log(sliderEditItemPanel.offsetLeft);
+      document.title = '首页';
   }
 }
 </script>
 <style scoped>
+    .new_msg_num{
+      width: 22px;
+      height: 17px;
+      background: url(../assets/img/msg_num_bg.png) no-repeat 0 0;
+      background-size: 22px auto;
+      color: #fff;
+      font-size: 12px;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .custom_nav_center{
+      display: flex;
+      align-items: center;
+
+    }
+    .custom_nav_center .new_msg_num{
+      position: absolute;
+      top:2px;
+      left: -27px;
+    }
     .slider_edit_list{
       width: 100%;
       overflow: hidden;
@@ -209,26 +117,6 @@ export default {
       border-bottom: 1px solid #595856;
       position: relative;
     }    
-    .slider_edit_list .slider_edit_item .slider_edit_item_panel{
-      box-sizing: border-box;
-      padding:0 7.5px;
-      position: absolute;
-      top: 0;
-      /*left: 0;*/
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 2;
-      background-color: #fff;
-    }
-    .slider_edit_list .slider_edit_item .slider_edit_item_panel.lock_close{
-     transition: all 0.5s;
-     left:0!important;
-    }
-
-
     .slider_edit_list .slider_edit_item .edit_btns{
       position: absolute;
       top: 0;
@@ -282,10 +170,17 @@ export default {
     }
     .chat_item .chat_time{
       position: absolute;
-      right: 0;
+      right: 2px;
       top:2px;
       color: #a3a3a3;
       font-size: 14px;
+    }
+
+    .chat_item .new_msg_num{
+      position: absolute;
+      right: 2px;
+      top:30px;
+
     }
 
 
