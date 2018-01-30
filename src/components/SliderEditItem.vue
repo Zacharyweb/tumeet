@@ -16,12 +16,14 @@ export default {
   name: 'SliderEditItem',
   props:{
      keyId:{
-        type: Number,
         required: true
       },
       sliderIndex:{
-        type: Number,
         default:-1
+      },
+      maxLeft:{
+        type:Number,
+        default:-150
       }
     },
   data () {
@@ -31,6 +33,8 @@ export default {
       offsetLeft:0,
       startLeft:0,
       sliderTimer:null,
+
+      maxLeftOffset:-75
     }
   },
   methods:{
@@ -45,7 +49,7 @@ export default {
         // 如果之前操作的对象是当前对象
         if(this.sliderIndex == index){
            // 过处于展开状态
-          if(offsetLeft == -150){
+          if(offsetLeft == this.maxLeftOffset){
              // 关闭动画
              // this.sliderIndex = -1;
              // setTimeout(()=>{
@@ -74,8 +78,8 @@ export default {
     handleTouchMove(e,index){
       
         let slideLeft = e.touches[0].clientX - this.beginOffset;
-        if( slideLeft < -150){
-          slideLeft = -150;
+        if( slideLeft < this.maxLeftOffset){
+          slideLeft = this.maxLeftOffset;
         };
         if(slideLeft > 0){
           slideLeft = -0;
@@ -88,7 +92,7 @@ export default {
         let endLeft = e.changedTouches[0].clientX;
         let moveLength = this.startLeft - endLeft;
         if(moveLength > 20){
-            if(this.slideLeft != -150){
+            if(this.slideLeft != this.maxLeftOffset){
                 this.itemSlide('open');
             };
         }else if(moveLength < -20){
@@ -104,7 +108,7 @@ export default {
             if(moveLength > 0 && this.offsetLeft == 0){
                this.itemSlide('close');
             };
-            if(moveLength < 0 && this.offsetLeft == -150){
+            if(moveLength < 0 && this.offsetLeft == this.maxLeftOffset){
                this.itemSlide('open');
             };
         };
@@ -115,8 +119,8 @@ export default {
         if(type == 'open'){
           this.sliderTimer = setInterval(function(){
               that.slideLeft--;
-              if(that.slideLeft <= -150){
-                 that.slideLeft = -150;
+              if(that.slideLeft <= that.maxLeftOffset){
+                 that.slideLeft = that.maxLeftOffset;
                  clearInterval(that.sliderTimer);   
               };
           },1);
@@ -134,7 +138,8 @@ export default {
     
   },
   mounted(){
-     
+
+     this.maxLeftOffset = this.maxLeft;
   },
 
 }

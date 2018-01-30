@@ -1,115 +1,86 @@
 <template>
   <div>
-    <v-scroll :on-refresh="onRefresh"  :bottom="60" :top="0" :no-more-text="'没有更多评论啦~'">
-    <div class="mine-msg">
-      <img class="mine-avatar" src="../../static/timg.jpeg">
-      <div class="mine-text-msg">
-        <p class="mine-base-msg">
-          <span class="mine-nickname">朱两边</span>
-          <span class="mine-tel">16767188567</span>
-        </p>
-        <p class="mine-intro">做个有趣的人。做个有趣的人。</p>
-      </div> 
-    </div>
-    <div class="router-bar">
-      <ul>
-        <li class="router-bar-item">
-          <div class="item-left">
-            <span class="iconfont icon-guanzhu"></span>
-            <span class="router-bar-name">我关注的专家</span>
-          </div>
-          <span class="iconfont icon-jiantou-1"></span>
-        </li>
-        <li class="router-bar-item">
-          <div class="item-left">
-            <span class="iconfont icon-yuyuedingdan"></span>
-            <span class="router-bar-name">预约订单</span>
-          </div>
-          <span class="iconfont icon-jiantou-1"></span>
-        </li>
-        <li class="router-bar-item">
-          <div class="item-left">
-            <span class="iconfont icon-youhuiquan"></span>
-            <span class="router-bar-name">我的优惠券</span>
-          </div>
-          <span class="iconfont icon-jiantou-1"></span>
-        </li>
-      </ul>
-      
-    </div>
+    <header-nav :title="'我'"></header-nav>
+    <v-scroll :on-refresh="onRefresh"  :bottom="60" :top="50" >
+  
+    <ul class="router-bar">
+      <li class="router-bar-item">
+        <div class="item-left">
+          <span class="router-bar-name">头像</span>
+        </div>
+        <div class="item-right">
+          <img class="user_avatar" src="../../static/timg.jpeg"/>
+          <span class="right-arrow"></span>
+        </div>
 
-    <div class="router-bar expert-mgnt expert-block">
-      <h4>专家管理</h4>
-      <ul>
-        <li class="router-bar-item" @click="becomeExpert">
-          <div class="item-left">
-            <span class="iconfont icon-zhuanjia"></span>
-            <span class="router-bar-name">成为专家</span>
-          </div>
-          <span class="iconfont icon-jiantou-1"></span>
-        </li>
-        <li class="router-bar-item">
-          <div class="item-left">
-            <span class="iconfont icon-ziliao"></span>
-            <span class="router-bar-name">专家资料</span>
-          </div>
-          <span class="iconfont icon-jiantou-1"></span>
-        </li>
-        <li class="router-bar-item">
-          <div class="item-left">
-            <span class="iconfont icon-yuyue"></span>
-            <span class="router-bar-name">预约我的</span>
-          </div>
-          <span class="iconfont icon-jiantou-1"></span>
-        </li>
-        <li class="router-bar-item" @click="$router.push('/relation')">
-          <div class="item-left">
-            <span class="iconfont icon-guanxi"></span>
-            <span class="router-bar-name">我的关系</span>
-          </div>
-          <span class="iconfont icon-jiantou-1"></span>
-        </li>
-        <li class="router-bar-item">
-          <div class="item-left">
-            <span class="iconfont icon-zhengce"></span>
-            <span class="router-bar-name">政策解读</span>
-          </div>
-          <span class="iconfont icon-jiantou-1"></span>
-        </li>
-        <li class="router-bar-item">
-          <div class="item-left">
-            <span class="iconfont icon-chaojihuati-wode"></span>
-            <span class="router-bar-name">话题管理</span>
-          </div>
-          <span class="iconfont icon-jiantou-1"></span>
-        </li>
-      </ul>  
-    </div>
+      </li>
+      <li class="router-bar-item">
+        <div class="item-left">
+          <span class="router-bar-name">名字</span>
+        </div>
+        <div class="item-right">
+          <span class="right_text">Lilong</span>
+          <span class="right-arrow"></span>
+        </div>
+      </li>
+      <li class="router-bar-item">
+        <div class="item-left">
+          <span class="router-bar-name">tumeet号</span>
+        </div>
+        <div class="item-right">
+          <span class="right_text">Lilong-2025</span>
+        </div>
+      </li>
 
-    <div class="router-bar service-panel">
-      <ul>
-        <li class="router-bar-item">
-          <div class="item-left">
-            <span class="iconfont icon-htmal5icon31-copy"></span>
-            <span class="router-bar-name">联系客服</span>
-          </div>
-          <span class="iconfont icon-jiantou-1"></span>
-        </li>
-      </ul>  
-    </div>
+      <li class="router-bar-item">
+        <div class="item-left">
+          <span class="router-bar-name">我的二维码</span>
+        </div>
+        <div class="item-right">
+          <img class="QRcode_icon" src="../assets/img/code_icon.png" >
+          <span class="right-arrow"></span>
+        </div>
+      </li>
+
+      <li class="router-bar-item">
+        <div class="item-left">
+          <span class="router-bar-name">手机号码</span>
+        </div>
+        <div class="item-right">
+          <span class="right_text">15757177444</span>
+        </div>
+      </li>
+
+      <li class="router-bar-item">
+        <div class="item-left">
+          <span class="router-bar-name">设置</span>
+        </div>
+        <div class="item-right">
+          <span class="right-arrow"></span>
+        </div>
+      </li>
+    </ul>
+
+  
+ 
 
     </v-scroll>
-    <bottom-nav :nav-index="2"></bottom-nav>
+    <div class="btn_wrap">
+      <div class="btn btn-red btn-large">退出登录</div>
+    </div>
+    <bottom-nav :nav-index="3"></bottom-nav>
   </div>
 </template>
 
 <script>
+import HeaderNav from '../components/HeaderNav.vue'
 import BottomNav from '../components/BottomNav.vue'
 import Scroll  from '../components/Scroll.vue'
 import T from '../tool/tool'
 export default {
   name: 'Mine',
   components:{
+    'header-nav': HeaderNav,
     'bottom-nav': BottomNav,
     'v-scroll': Scroll
   },
@@ -136,77 +107,62 @@ export default {
 }
 </script>
 <style scoped>
-  .mine-msg{
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    padding: 15px 20px;
-    border-bottom: 1px solid #e6e6e6;
-  }
-  .mine-msg .mine-avatar{
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-right: 20px;
-  }
-  .mine-msg .mine-text-msg{
-    flex: 1;
-    width: 0;
-  }
-  .mine-msg .mine-base-msg{
-    margin-bottom: 10px;
-  }
-  
-  .mine-msg .mine-base-msg .mine-nickname{
-    font-size: 20px;
-    margin-right: 20px;
-  }
-  .mine-msg .mine-base-msg .mine-tel{
-    color: #666;
-  }
-  .mine-msg .mine-intro{
-    color: #666;
-  }
   .router-bar{
     border-bottom: 1px solid #e6e6e6;
-    padding: 0 20px;
+    padding-left: 15px;
     background-color: #fff;
   }
   .router-bar .router-bar-item{
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
-    padding:0 10px;
+    min-height: 44px;
+    padding:9px 0;
   }
   .router-bar .router-bar-item+.router-bar-item{
-    border-top: 1px solid #e6e6e6;
-    display: flex;
+    border-top: 1px solid #9a9a9a;
   }
-  .router-bar .router-bar-item .item-left .iconfont{
-    color: #55cbc4;
-    font-size: 22px;
-    margin-right: 5px;
+  .router-bar .router-bar-item .router-bar-name{
+    font-size: 14px;
+    color: #222;
+  }
+  .router-bar .router-bar-item .item-right{
+      display: flex;
+      align-items: center;
+      margin-right: 15px;
+  }
 
+  .router-bar .router-bar-item .item-right .right-arrow{
+      width: 18px;
+      height: 14px;
+      background:url(../assets/img/right_arrow.png) no-repeat 100% center;
+      background-size: auto 14px;
   }
-  .expert-mgnt{
-    border-top: 1px solid #e6e6e6;
-    margin-top: 20px;
-    padding-top: 15px;
-    margin-bottom:20px;
+    .router-bar .router-bar-item .item-right .right_text{
+    font-size: 14px;
+    color: #808080;
   }
-  .expert-mgnt h4{
-    font-size: 18px;
-   padding-bottom: 10px;
-   border-bottom: 1px solid #e6e6e6;
+  .router-bar .router-bar-item .item-right .user_avatar{
+    width: 65px;
+    height: 65px;
+    border-radius: 4px;
   }
-  .service-panel{
-       
+  .router-bar .router-bar-item .item-right .QRcode_icon{
+    width: 20px;
+    height: 20px;
   }
-  .service-panel .service-tips{
-    text-align: center;
+  .btn_wrap{
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 50px;
   }
-  .service-panel .service-tel{
-    
+  .btn_wrap .btn{
+    border-radius:0;
   }
+
+
+
 </style>

@@ -1,12 +1,13 @@
 <template>
     <div class="search-bar" :class="{'blue_bg':showCancel}">
       <input  type="text" class="keywords-input" :class="{'type2':showCancel}" 
-              placeholder="搜索" v-model="searchKey" 
+              :placeholder="placeHolder" v-model="keyword" 
               @focus="focusSearchBar($event)" ref="searchInput">
       <img src="../assets/img/search_bar_icon1.png" 
-           v-show="!showCancel" 
-           class="search_bar_icon search_icon"/>
+           class="search_bar_icon search_icon"
+           :class="{'more_left':showCancel,'most_left':findByTel}"/>
       <img src="../assets/img/search_bar_icon2.png" 
+           v-if="!hideVoiceInput"
            class="search_bar_icon voice_icon" 
            :class="{'more_left':showCancel}"/>
       <span v-if="showCancel" 
@@ -32,11 +33,23 @@ export default {
     autoFocus:{
       type: Boolean,
       default: false
+    },
+    placeHolder:{
+      type: String,
+      default: '搜索'
+    },
+    hideVoiceInput:{
+      type: Boolean,
+      default: false
+    },
+    findByTel:{
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
-      searchKey:'',
+      keyword:'',
     }
   },
   methods:{
@@ -47,6 +60,11 @@ export default {
     },
     closeSearchPage(){
        this.$router.go(-1);
+    }
+  },
+  watch: {
+    keyword: function(newKeyword) {
+      this.$emit("update:keyword", newKeyword);
     }
   },
   mounted(){
@@ -94,7 +112,7 @@ export default {
   }
   .search-bar input.type2{
     text-align: left;
-    padding-left: 15px;
+    padding-left: 30px;
   }
   .search-bar .search_bar_icon{
     position: absolute;
@@ -111,9 +129,12 @@ export default {
   .search-bar .voice_icon{
      right: 20px;
   }
-/*  .search-bar .search_icon.more_left{
-     margin-left: -45px;
-  }*/
+  .search-bar .search_icon.more_left{
+     left: 50px;
+  }
+  .search-bar .search_icon.most_left{
+     margin-left: -65px;
+  }
   .search-bar .voice_icon.more_left{
       right: 56px;
   }

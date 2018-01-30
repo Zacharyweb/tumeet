@@ -3,18 +3,23 @@ import Router from 'vue-router'
 import Demo from '@/views/Demo'
 import Home from '@/views/Home'
 import CreateChat from '@/views/CreateChat'
+import SearchResult from '@/views/SearchResult'
+import AddressBook from '@/views/AddressBook'
+import FriendDeatil from '@/views/FriendDeatil'
+import EditFriendDeatil from '@/views/EditFriendDeatil'
+import AddFriends from '@/views/AddFriends'
+import NewFriends from '@/views/NewFriends'
+import AddTelFriends from '@/views/AddTelFriends'
 
-
-
-
-
-
+import SearchByAccount from '@/views/SearchByAccount'
+import SearchInTelBook from '@/views/SearchInTelBook'
+import SearchContacts from '@/views/SearchContacts'
 
 
 
 import Found from '@/views/Found'
 import Mine from '@/views/Mine'
-import SearchResult from '@/views/SearchResult'
+
 import SignIn from '@/views/SignIn'
 import ExpertDetail from '@/views/ExpertDetail'
 import TopicDetail from '@/views/TopicDetail'
@@ -58,6 +63,74 @@ export default new Router({
       name: 'CreateChat',
       component: CreateChat
     },
+    // 首页综合搜索页
+    {
+      path: '/search',
+      name: 'Search',
+      component: SearchResult
+    },
+    // 搜索通讯录好友页
+    {
+      path: '/searchInTelBook',
+      name: 'SearchInTelBook',
+      component: SearchInTelBook
+    },
+    // 搜索通好友通过微信/手机号页
+    {
+      path: '/searchByAccount',
+      name: 'SearchByAccount',
+      component: SearchByAccount
+    },
+    // 搜索通讯录好友
+    {
+      path: '/searchContacts',
+      name: 'SearchContacts',
+      component: SearchContacts
+    },
+
+    // 通讯录
+    {
+      path: '/address',
+      name: 'AddressBook',
+      component: AddressBook
+    },
+    // 通讯录好友详情
+    {
+      path: '/friendDeatil/:friendId',
+      name: 'FriendDeatil',
+      component: FriendDeatil
+    }, 
+    // 修改好友备注
+    {
+      path: '/editFriendDeatil/:friendId',
+      name: 'EditFriendDeatil',
+      component: EditFriendDeatil
+    }, 
+
+    // 添加朋友
+    {
+      path: '/addFriend',
+      name: 'AddFriends',
+      component: AddFriends
+    },
+    // 新的朋友
+    {
+      path: '/newFriends',
+      name: 'NewFriends',
+      component: NewFriends
+    },
+    // 添加手机联系人
+    {
+      path: '/addTelFriends',
+      name: 'AddTelFriends',
+      component: AddTelFriends
+    },
+
+
+
+
+
+
 
 
 
@@ -81,12 +154,7 @@ export default new Router({
       name: 'Sign',
       component: SignIn
     },
-    // 搜索页
-    {
-      path: '/search',
-      name: 'Search',
-      component: SearchResult
-    },
+ 
     // 专家详情
     {
       path: '/expert/:expertId',

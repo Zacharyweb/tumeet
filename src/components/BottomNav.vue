@@ -4,7 +4,7 @@
       <span class="nav_icon icon_tumeet"></span>
       <p class="nav-name">tumeet</p>
     </li>
-    <li class="nav-item" :class="{'active': navIndex == 1, 'ongoing': ongoingArr.indexOf(1) != -1}" @click="changeNav('found')">
+    <li class="nav-item" :class="{'active': navIndex == 1, 'ongoing': ongoingArr.indexOf(1) != -1}" @click="changeNav('address')">
       <span class="nav_icon icon_mail_list"></span>
       <p class="nav-name">通讯录</p>
     </li>
@@ -29,11 +29,12 @@ export default {
   },
   data () {
     return {
-       ongoingArr:[3] 
+       ongoingArr:[] 
     }
   },
   methods:{
     changeNav(path){
+      console.log('11111111111');
       this.$router.push(path);
     }
  

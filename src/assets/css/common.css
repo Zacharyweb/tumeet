@@ -14,12 +14,15 @@
   border:1px solid #55cbc4;
   color:#55cbc4;
 }
+.btn-blue{
+  background-color:#67bfe7;
+}
 .btn-red{
-  background-color:#E64340;
+  background-color:#d70012;
 }
 .btn-large{
   width:100%;
-  height:46px;
+  height:50px;
   border-radius:5px;
   font-size:18px;
 }
@@ -55,94 +58,118 @@
   z-index: 8;
 }
 
-.common-panel{
-  background-color: #fff;
-  padding: 15px 20px;
-  border-top: 1px solid #e6e6e6;
-  border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 10px;
-}
-.common-panel .panel-title{
-  padding-bottom: 15px;
-  border-bottom: 1px solid #e6e6e6;
-  font-size: 18px;
-}
-.common-panel .panel-title .iconfont{
-  font-size: 24px;
-  color: #55cbc4;
-  padding-right:10px;
-}
-
-.expert-block{
-  background-color: #fff;
-  padding: 20px;
-  border-top: 1px solid #e6e6e6;
-  border-bottom: 1px solid #e6e6e6;
-  margin-top: 10px;
-}
-.expert-block h4{
-  font-size: 16px;
-  position: relative;
-  padding-bottom: 20px;
-}
-.expert-block h4:before{
-  content: '';
-  position: absolute;
-  width: 8px;
-  height: 19px;
-  background-color:#55cbc4;
-  top:0;
-  left: -20px;
-
-}
-.expert-block .expert-item{
-  padding: 20px 0;
-  display: flex;
-  align-items: center;
-}
-.expert-block .expert-item+.expert-item{
-  border-top: 1px solid #e6e6e6;
-}
-.expert-block .expert-item img{
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  vertical-align: bottom;
-  margin-right: 20px;
-}
-.expert-block .expert-item .expert-info{
-  flex: 1;
-  width: 0;
-}
-.expert-block .expert-item .expert-topic{
-  font-size: 16px;
-  margin-bottom: 8px;
-}
-.expert-block .expert-item .expert-msg{
-  margin-bottom: 8px;
-  color: #ccc;
-}
-.expert-block .expert-item .expert-name{
-  color: #666;
-  font-size: 16px;
-  font-weight: bold;
-}
-.expert-block .expert-item .personal-tag{
-  display: flex;
-}
-.expert-block .expert-item .personal-tag .tag-item{
-  padding: 2px 4px;
-  border: 1px solid #55cbc4;
-  border-radius: 2px;
-  color: #55cbc4;
-  margin-right: 8px;
-}
-
 .require-icon{
   color:#FF4040;
 }
 
 
+/*右侧浮动字母表*/
+.letter_indexes{
+  position: fixed;
+  top:96px;
+  right: 10px;
+}
+.letter_indexes .letter_indexes_item{
+  font-size: 12px;
+  color: #222;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  margin-bottom: 3px;
+  border-radius: 50%;
+}
+.letter_indexes .letter_indexes_item.active{
+  color: #fff;
+  background-color: #67bfe7;
+}
+
+/*手机通讯录好友列表/添加好友搜索结果列表*/
+
+.contacts_name_indexes{
+ height: 24px;
+ font-size: 12px;
+ padding-left: 18px;
+ color: #a5a5a5;
+ line-height:24px;
+}
+.contacts_name_indexes.active{
+  color: #67c0ea;
+}
+
+.contacts_list{
+  padding-left: 15px;
+  background-color: #fff;
+}
+.contacts_list .contacts_item{
+  height: 55px;
+  display: flex;
+  align-items: center;
+  padding-left: 4px;
+  position: relative;
+  border-bottom: 1px solid #d9d9d9;
+}
+.contacts_list .contacts_item:last-child{
+  border-bottom: none;
+}
+.contacts_list .contacts_item .contacts_avatar{
+  width: 36px;
+  height: 36px;
+ margin-right: 18px;
+}
+.contacts_list .contacts_item .contacts_msg{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1;
+}
+.contacts_list .contacts_item .contacts_name{
+  color: #222;
+  font-size: 16px;
+}
+.contacts_list .contacts_item .contacts_tumeet{
+  margin-top: 4px;
+  color:#a2a2a2;
+  font-size:14px; 
+}
+.contacts_list .contacts_item .agreen_btn{
+    position: absolute;
+    width: 46px;
+    height: 30px;
+    line-height: 30px;
+    color:#fff;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 14px;
+    right: 35px;
+    top:50%;
+    margin-top: -15px;
+    box-shadow: 1px 1px 1px 0 #009601;
+}
+.out_date_status{
+  position: absolute;
+  height: 30px;
+  line-height: 30px;
+  right: 35px;
+  top:50%;
+  margin-top: -15px;
+  font-size: 14px;
+  color: #c1c1c1;
+}
+
+/*搜索结果文字提示头部*/
+.search_result_block{
+   background-color: #fff;
+   padding-left: 14px;
+   margin-bottom: 5px;
+ }
+ .search_result_cate{
+   font-size: 14px;
+   color: #777;
+   height: 39px;
+   line-height: 39px;
+   border-bottom: 1px solid #585858;
+}
 
 
 
