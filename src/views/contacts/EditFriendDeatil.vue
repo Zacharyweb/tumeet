@@ -2,13 +2,13 @@
   <div>
     <header-nav :title="'资料设置'">
       <div class="nav_custom_left" slot="left" @click="toBack">
-         <img  src="../assets/img/left_arrow.png"/>
+         <img  src="../../assets/img/left_arrow.png"/>
          <span class="nav_left_text">个人详情</span>
       </div>
     </header-nav>
       <v-scroll :on-refresh="onRefresh" :bottom="50" :top="50">
 
-        <div class="custom_nav_bar">
+        <div class="custom_nav_bar" @click="toEditName">
           <div class="left_sec">昵称</div>
           <div class="right_sec has_right_arrow">
             <span>肖总</span>
@@ -33,14 +33,14 @@
 
 <script>
 
-import HeaderNav from '../components/HeaderNav.vue'
+import HeaderNav from '../../components/HeaderNav.vue'
 
-import Scroll  from '../components/Scroll.vue'
+import Scroll  from '../../components/Scroll.vue'
 
-import T from '../tool/tool'
+import T from '../../tool/tool'
 
 export default {
-  name: 'Home',
+  name: 'EditFriendDeatil',
   components:{
     'header-nav': HeaderNav,
     'v-scroll': Scroll,
@@ -63,8 +63,10 @@ export default {
     },
     toDelete(){
       console.log('删除好友');
+    },
+    toEditName(){
+      this.$router.push('/editFriendName/'+ this.friendId)
     }
-
   },
   mounted(){
     document.title = '个人详情';
@@ -109,7 +111,7 @@ export default {
       padding-right: 15px;
     }
     .custom_nav_bar .right_sec.has_right_arrow{
-       background:url(../assets/img/right_arrow.png) no-repeat 100% center;
+       background:url(../../assets/img/right_arrow.png) no-repeat 100% center;
        background-size: auto 14px; 
     }
     .btn_wrap{

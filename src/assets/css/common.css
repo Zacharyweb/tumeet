@@ -14,10 +14,11 @@
   border:1px solid #55cbc4;
   color:#55cbc4;
 }
-.btn-blue{
+
+.btn-blue,.btn_blue{
   background-color:#67bfe7;
 }
-.btn-red{
+.btn-red,.btn_red{
   background-color:#d70012;
 }
 .btn-large{
@@ -35,7 +36,6 @@
 .btn.disabled{
   background-color:#d3d3d3;
 }
-
 
 .text-ellipsis{
   white-space: nowrap;
@@ -60,6 +60,76 @@
 
 .require-icon{
   color:#FF4040;
+}
+
+/*消息数量标签*/
+.new_msg_num{
+  width: 22px;
+  height: 17px;
+  background: url(../../assets/img/msg_num_bg.png) no-repeat 0 0;
+  background-size: 22px auto;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/*对话、存档列表样式*/
+.chat_item{
+  display: flex;
+  align-items: center;
+  flex:1;
+}
+.chat_item .user_avater{
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+}
+.chat_item .chat_content{
+  padding-left: 7.5px;
+  flex: 1;
+  position: relative;
+}
+.chat_item .chat_title{
+  width: 225px;
+  font-size: 16px;
+  color: #222;
+  margin-bottom: 6px;
+}
+.chat_item .chat_abstract{
+  width: 225px;
+  font-size: 14px;
+  color: #999;
+  display: flex;
+  justify-content: space-between;
+}
+.chat_item .chat_abstract>span{
+  margin-right: 10px;
+}
+.chat_item .chat_abstract>span b{
+  font-weight: normal;
+  color: #d70012;
+}
+.chat_item .chat_time{
+  position: absolute;
+  right: 2px;
+  top:2px;
+  color: #a3a3a3;
+  font-size: 14px;
+}
+.chat_item .new_msg_num{
+  position: absolute;
+  right: 2px;
+  top:30px;
+}
+.chat_item .restart_icon{
+  position: absolute;
+  bottom: -2px;
+  right: 10px;
+  width: 36px;
+  height: 27px;
+  background: url(../../assets/img/nav_icon3_1.png) no-repeat 0 0;
+  background-size: 36px auto;
 }
 
 
@@ -171,8 +241,101 @@
    border-bottom: 1px solid #585858;
 }
 
+/*底部上滑的选择栏*/
+.action_select_list_mask{
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 998;
+}
+.action_select_list{
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   background-color: #c3c2c7;
+   transform: translateY(100%);
+   transition: all 0.3s;
+   z-index: 999;
+}
+.action_select_list.show{
+  transform: translateY(0%);
+}
+.action_select_list .action_select_item{
+    background-color: #e3e3e3;
+    height: 50px;
+   
+    text-align: center;
+    line-height: 50px;
+    color: #222;
+    font-size: 16px;
+}
+.action_select_list .action_select_item+.action_select_item{
+   border-top: 1px solid #585858;
+}
+.action_select_list .action_select_item.sm_font{
+   font-size: 14px;
+}
+.action_select_list .action_select_item.red_font{
+  color: #d70012;
+}
+.action_select_list .action_select_item.new_block{
+    margin-top: 5px;
+    border-color: #a3a3a3;
+}
 
+.upload-btn{
+  display: none;
+}
 
+/*路由导航项*/
+.router-bar{
+  border-bottom: 1px solid #e6e6e6;
+  padding-left: 15px;
+  background-color: #fff;
+}
+.router-bar .router-bar-item{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px;
+  padding:9px 0;
+}
+.router-bar .router-bar-item+.router-bar-item{
+  border-top: 1px solid #9a9a9a;
+}
+.router-bar .router-bar-item .router-bar-name{
+  font-size: 14px;
+  color: #222;
+}
+.router-bar .router-bar-item .item-right{
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+.router-bar .router-bar-item .item-right .right-arrow{
+    width: 18px;
+    height: 14px;
+    background:url(../../assets/img/right_arrow.png) no-repeat 100% center;
+    background-size: auto 14px;
+}
+  .router-bar .router-bar-item .item-right .right_text{
+  font-size: 14px;
+  color: #808080;
+}
+.router-bar .router-bar-item .item-right .user_avatar{
+  width: 65px;
+  height: 65px;
+  border-radius: 4px;
+}
+.router-bar .router-bar-item .item-right .QRcode_icon{
+  width: 20px;
+  height: 20px;
+}
 
 .showIn{
      -webkit-animation: showIn 0.3s;

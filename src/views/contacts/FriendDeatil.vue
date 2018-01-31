@@ -2,15 +2,15 @@
   <div>
     <header-nav :title="'个人详情'">
       <div class="nav_custom_left" slot="left" @click="toBack">
-         <img  src="../assets/img/left_arrow.png"/>
+         <img  src="../../assets/img/left_arrow.png"/>
          <span class="nav_left_text">通讯录</span>
       </div>
-      <img slot="right" src="../assets/img/detail_dots.png"  @click="toEditRemark"/>
+      <img slot="right" src="../../assets/img/detail_dots.png"  @click="toEditRemark"/>
     </header-nav>
       <v-scroll :on-refresh="onRefresh" :bottom="50" :top="50">
 
         <div class="friend_msg_wrap">
-          <img class="friend_avatar" src="../../static/timg.jpeg"/>
+          <img class="friend_avatar" src="../../../static/timg.jpeg"/>
           <div class="friend_msg">
             <p class="friend_nickname">肖总</p>
             <p class="timeet_account">tumeet:alang1987</p>
@@ -38,11 +38,11 @@
 
 <script>
 
-import HeaderNav from '../components/HeaderNav.vue'
+import HeaderNav from '../../components/HeaderNav.vue'
 
-import Scroll  from '../components/Scroll.vue'
+import Scroll  from '../../components/Scroll.vue'
 
-import T from '../tool/tool'
+import T from '../../tool/tool'
 
 export default {
   name: 'Home',

@@ -13,19 +13,17 @@
       </p>
     </div>
     <div class="btn-wrapper">
-      <p class="btn btn-green btn-large" @click="signIn">立即注册</p>
+      <p class="btn btn-blue btn-large" @click="signIn">立即登录</p>
     </div>
-    <bottom-nav></bottom-nav>
+
   </div>
 </template>
 
 <script>
-import HeaderNav from '../components/HeaderNav.vue'
-import BottomNav from '../components/BottomNav.vue'
+import HeaderNav from '../../components/HeaderNav.vue'
 export default {
   name: 'SignIn',
   components:{
-    'bottom-nav': BottomNav,
     'header-nav': HeaderNav
   },
   data () {
@@ -55,6 +53,7 @@ export default {
     signIn(){
       let tel = this.tel;
       let code = this.code;
+      this.$router.push('/');
     }
   },
   mounted(){
@@ -63,47 +62,55 @@ export default {
 }
 </script>
 <style scoped>
-  .signin-form{
-    margin-top: 100px;
-    padding:15px;
-  }
-  .signin-form .signin-form-item{
-    display:flex;
-    align-items:center;
-    height:40px;
-    padding:10px 5px;
-    font-size:20px;
-    position:relative;
-    border-bottom: 1px solid #e6e6e6;
-  }
-  .signin-form .signin-form-item input{
-    flex:1;
-    padding-left: 20px;
-    border:none;
-    background-color:#f5f5f5;
-    font-size:20px;
-  }
-  .signin-form .signin-form-item .iconfont{
-    color:#888;
-    font-size:26px;
-  }
-  .signin-form .signin-form-item .get-code-btn,
-  .signin-form .signin-form-item .has-get-code{
-    position:absolute;
-    right: 0;
-    top:50%;
-    transform:translateY(-50%);
-    white-space: nowrap;
-    padding-left:10px;
-    border-left:1px solid #e6e6e6;
-  }
-  .signin-form .signin-form-item .get-code-btn{
-    color:#55cbc4;
-  }
-  .signin-form .signin-form-item .has-get-code{
-    color:#888;
-  }
-  .btn-wrapper{
-    padding:15px;
-  }
+.signin-form {
+  margin-top: 100px;
+  padding: 0 15px;
+  background-color: #fff;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+}
+.signin-form .signin-form-item {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 10px 5px;
+  font-size: 20px;
+  position: relative;
+}
+.signin-form .signin-form-item+.signin-form-item{
+  border-top: 1px solid #e6e6e6;
+}
+.signin-form .signin-form-item input {
+  flex: 1;
+  padding-left: 20px;
+  border: none;
+  background-color: #fff;
+  font-size: 14px;
+  height: 24px;
+}
+.signin-form .signin-form-item .iconfont {
+  color: #888;
+  font-size: 22px;
+}
+.signin-form .signin-form-item .get-code-btn,
+.signin-form .signin-form-item .has-get-code {
+  font-size: 14px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  padding-left: 10px;
+  border-left: 1px solid #e6e6e6;
+}
+.signin-form .signin-form-item .get-code-btn {
+  color: #67bfe7;
+}
+.signin-form .signin-form-item .has-get-code {
+  color: #888;
+}
+.btn-wrapper {
+  margin-top: 20px;
+  padding:0 15px;
+}
 </style>

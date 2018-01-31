@@ -117,7 +117,7 @@ export default {
             animation: line-scale 1s 0.5s infinite cubic-bezier(.2, .68, .18, 1.08); 
   }
   .line-scale > span {
-    background-color: #55cbc4;
+    background-color: #67bfe7;
     border-radius: 50%;
     width: 10px;
     height: 10px;

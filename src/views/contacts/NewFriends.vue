@@ -2,7 +2,7 @@
   <div>
     <header-nav :title="'新的朋友'">
       <div class="nav_custom_left" slot="left" @click="toBack">
-         <img  src="../assets/img/left_arrow.png"/>
+         <img  src="../../assets/img/left_arrow.png"/>
          <span class="nav_left_text">通讯录</span>
       </div>
       <div slot="right" @click="toAddFriend" style="font-size:15px">添加朋友</div>
@@ -16,7 +16,7 @@
     <v-scroll :on-refresh="onRefresh" :bottom="0" :top="90">
 
       <div class="add_friends_trigger" @click="toAddTelFriends">
-        <img class="green_mobile_icon" src="../assets/img/green_mobile.png"/>
+        <img class="green_mobile_icon" src="../../assets/img/green_mobile.png"/>
         <p class="tips_text">添加手机联系人</p>
       </div>
        
@@ -53,13 +53,13 @@
 
 <script>
 
-import HeaderNav from '../components/HeaderNav.vue'
-import SearchBar  from '../components/SearchBar.vue'
-import SliderEditItem  from '../components/SliderEditItem.vue'
+import HeaderNav from '../../components/HeaderNav.vue'
+import SearchBar  from '../../components/SearchBar.vue'
+import SliderEditItem  from '../../components/SliderEditItem.vue'
 
-import Scroll  from '../components/Scroll.vue'
-import BottomNav from '../components/BottomNav.vue'
-import T from '../tool/tool'
+import Scroll  from '../../components/Scroll.vue'
+import BottomNav from '../../components/BottomNav.vue'
+import T from '../../tool/tool'
 
 export default {
   name: 'Home',
@@ -81,13 +81,13 @@ export default {
           list:[
             {
               name:'Alili',
-              avatar:'../../static/timg.jpeg',
+              avatar:'../../../static/timg.jpeg',
               id:'0',
               tumeet:'alang1987'
             },
             {
               name:'爱丽丝',
-              avatar:'../../static/timg.jpeg',
+              avatar:'../../../static/timg.jpeg',
               id:'1',
               tumeet:'alang1987'
             }
@@ -98,19 +98,19 @@ export default {
           list:[
             {
               name:'Banana',
-              avatar:'../../static/timg.jpeg',
+              avatar:'../../../static/timg.jpeg',
               id:'3',
               tumeet:'alang1987'
             },
             {
               name:'包公',
-              avatar:'../../static/timg.jpeg',
+              avatar:'../../../static/timg.jpeg',
               id:'4',
               tumeet:'alang1987'
             },
             {
               name:'宝宝抱抱',
-              avatar:'../../static/timg.jpeg',
+              avatar:'../../../static/timg.jpeg',
               id:'66',
               tumeet:'alang1987'
             }

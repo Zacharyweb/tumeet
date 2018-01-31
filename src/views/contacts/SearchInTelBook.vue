@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import SearchBar  from '../components/SearchBar.vue'
-import Scroll  from '../components/Scroll.vue'
-import T from '../tool/tool'
+import SearchBar  from '../../components/SearchBar.vue'
+import Scroll  from '../../components/Scroll.vue'
+import T from '../../tool/tool'
 export default {
   name: 'SearchInTelBook',
   components:{
@@ -37,14 +37,14 @@ export default {
       resultList: [
         {
           name:'Alili',
-          avatar:'../../static/timg.jpeg',
+          avatar:'../../../static/timg.jpeg',
           id:'0',
           tumeet:'alang1987',
           added:1
         },
         {
           name:'爱丽丝',
-          avatar:'../../static/timg.jpeg',
+          avatar:'../../../static/timg.jpeg',
           id:'1',
           tumeet:'alang1987',
           added:0

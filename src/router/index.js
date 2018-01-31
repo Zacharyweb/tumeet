@@ -1,40 +1,41 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Demo from '@/views/Demo'
-import Home from '@/views/Home'
-import CreateChat from '@/views/CreateChat'
-import SearchResult from '@/views/SearchResult'
-import AddressBook from '@/views/AddressBook'
-import FriendDeatil from '@/views/FriendDeatil'
-import EditFriendDeatil from '@/views/EditFriendDeatil'
-import AddFriends from '@/views/AddFriends'
-import NewFriends from '@/views/NewFriends'
-import AddTelFriends from '@/views/AddTelFriends'
-
-import SearchByAccount from '@/views/SearchByAccount'
-import SearchInTelBook from '@/views/SearchInTelBook'
-import SearchContacts from '@/views/SearchContacts'
 
 
+import Home from '@/views/tumeet/Index'
+import CreateChat from '@/views/tumeet/CreateChat'
+import SearchResult from '@/views/tumeet/SearchResult'
 
-import Found from '@/views/Found'
-import Mine from '@/views/Mine'
 
-import SignIn from '@/views/SignIn'
-import ExpertDetail from '@/views/ExpertDetail'
-import TopicDetail from '@/views/TopicDetail'
-import Appointment from '@/views/Appointment'
-import Category from '@/views/Category'
-import BecomeExpert from '@/views/BecomeExpert'
+import SavePage from '@/views/save/Index'
 
-import Base from '@/views/Upgrade/Base'
-import Intro from '@/views/Upgrade/Intro'
-import Check from '@/views/Upgrade/Check'
 
-import EditTopic from '@/views/EditTopic'
-import EditAritcle from '@/views/EditAritcle'
+import AddressBook from '@/views/contacts/Index'
+import FriendDeatil from '@/views/contacts/FriendDeatil'
+import EditFriendDeatil from '@/views/contacts/EditFriendDeatil'
+import EditFriendsName from '@/views/contacts/EditFriendsName'
+import AddFriends from '@/views/contacts/AddFriends'
+import NewFriends from '@/views/contacts/NewFriends'
+import AddTelFriends from '@/views/contacts/AddTelFriends'
+import SearchByAccount from '@/views/contacts/SearchByAccount'
+import SearchInTelBook from '@/views/contacts/SearchInTelBook'
+import SearchContacts from '@/views/contacts/SearchContacts'
 
-import Relation from '@/views/MyRelation'
+
+
+
+import Mine from '@/views/mine/Index'
+import Avatar from '@/views/mine/Avatar'
+import SetUp from '@/views/mine/Set'
+import QRcode from '@/views/mine/QRcode'
+import EditName from '@/views/mine/EditName'
+import SignIn from '@/views/mine/SignIn'
+
+//会话
+import ChatRoom from '@/views/chat/Index'
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -45,6 +46,7 @@ export default new Router({
       name: 'Demo',
       component: Demo
     },
+
     // 首页
     {
       path: '/',
@@ -69,6 +71,22 @@ export default new Router({
       name: 'Search',
       component: SearchResult
     },
+
+
+    // 存档页
+    {
+      path: '/save',
+      name: 'SavePage',
+      component: SavePage
+    },
+
+    // 通讯录
+    {
+      path: '/address',
+      name: 'AddressBook',
+      component: AddressBook
+    },
+
     // 搜索通讯录好友页
     {
       path: '/searchInTelBook',
@@ -87,13 +105,6 @@ export default new Router({
       name: 'SearchContacts',
       component: SearchContacts
     },
-
-    // 通讯录
-    {
-      path: '/address',
-      name: 'AddressBook',
-      component: AddressBook
-    },
     // 通讯录好友详情
     {
       path: '/friendDeatil/:friendId',
@@ -106,6 +117,12 @@ export default new Router({
       name: 'EditFriendDeatil',
       component: EditFriendDeatil
     }, 
+    // 修改好友名字
+    {
+      path: '/editFriendName/:friendId',
+      name: 'EditFriendsName',
+      component: EditFriendsName
+    },
 
     // 添加朋友
     {
@@ -113,12 +130,14 @@ export default new Router({
       name: 'AddFriends',
       component: AddFriends
     },
+
     // 新的朋友
     {
       path: '/newFriends',
       name: 'NewFriends',
       component: NewFriends
     },
+
     // 添加手机联系人
     {
       path: '/addTelFriends',
@@ -126,91 +145,46 @@ export default new Router({
       component: AddTelFriends
     },
 
+     //我的
+     {
+       path: '/mine',
+       name: 'Mine',
+       component: Mine
+     },
+     {
+       path: '/avatar',
+       name: 'Avatar',
+       component: Avatar
+     },
+     {
+       path: '/set',
+       name: 'SetUp',
+       component: SetUp
+     },
+     {
+       path: '/qrcode',
+       name: 'QRcode',
+       component: QRcode
+     },
+     {
+       path: '/edName',
+       name: 'EditName',
+       component: EditName
+     },
+     // 注册
+     {
+       path: '/sign',
+       name: 'Sign',
+       component: SignIn
+     },
+      //会话
+      {
+        path: '/chat/:id',
+        name: 'ChatRoom',
+        component: ChatRoom
+      },
 
 
 
-
-
-
-
-
-
-
-    //发现
-    {
-      path: '/found',
-      name: 'Found',
-      component: Found
-    },
-    //我的
-    {
-      path: '/mine',
-      name: 'Mine',
-      component: Mine
-    },
-    // 注册
-    {
-      path: '/sign',
-      name: 'Sign',
-      component: SignIn
-    },
- 
-    // 专家详情
-    {
-      path: '/expert/:expertId',
-      name: 'ExpertDetail',
-      component: ExpertDetail,
-      children: [
-        { path: 'bar', component: TopicDetail }
-      ]
-    },
-    // 话题详情
-    {
-      path: '/expert/:expertId/topic/:topicId',
-      name: 'TopicDetail',
-      component: TopicDetail
-    },
-    // 预约页
-    {
-      path: '/appointment',
-      name: 'Appointment',
-      component: Appointment
-    },
-    //分类页
-    {
-      path: '/cate',
-      name: 'Category',
-      component: Category
-    },
-    //成为专家
-    {
-      path: '/upgrade',
-      name: 'BecomeExpert',
-      component: BecomeExpert,
-      children:[
-        { path: '/',name: 'Base',component: Base},
-        { path: 'intro',name: 'Intro',component: Intro},
-        { path: 'check',name: 'Check',component: Check}
-      ]
-    },
-    //编辑、添加话题
-    {
-      path: '/etopic/:type',
-      name: 'EditTopic',
-      component: EditTopic
-    },
-    //编辑、添加文章
-    {
-      path: '/earticle/:type',
-      name: 'EditAritcle',
-      component: EditAritcle
-    },
-    //我的关系
-    {
-      path: '/relation',
-      name: 'Relation',
-      component: Relation
-    },
-   
   ]
 })

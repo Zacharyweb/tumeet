@@ -8,7 +8,7 @@
       <span class="nav_icon icon_mail_list"></span>
       <p class="nav-name">通讯录</p>
     </li>
-    <li class="nav-item" :class="{'active': navIndex == 2, 'ongoing': ongoingArr.indexOf(2) != -1}" @click="changeNav('mine')">
+    <li class="nav-item" :class="{'active': navIndex == 2, 'ongoing': ongoingArr.indexOf(2) != -1}" @click="changeNav('save')">
       <span class="nav_icon icon_save"></span>
       <p class="nav-name">存档</p>
     </li>
@@ -34,7 +34,7 @@ export default {
   },
   methods:{
     changeNav(path){
-      console.log('11111111111');
+
       this.$router.push(path);
     }
  

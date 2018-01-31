@@ -2,7 +2,7 @@
   <div>
     <header-nav :title="'添加朋友'">
       <div class="nav_custom_left" slot="left" @click="toBack">
-         <img  src="../assets/img/left_arrow.png"/>
+         <img  src="../../assets/img/left_arrow.png"/>
          <span class="nav_left_text">通讯录</span>
       </div>
     </header-nav>
@@ -18,7 +18,7 @@
         <ul class="add_friends_ways">
 
           <li class="add_friends_way_item" @click="toSweepCode">
-            <img class="way_icon" src="../assets/img/sweep_code.png"/>
+            <img class="way_icon" src="../../assets/img/sweep_code.png"/>
             <div class="way_text">
               <p class="way_name">扫一扫</p>
               <p class="way_explain">扫描二维码名片</p>
@@ -27,7 +27,7 @@
           </li>
 
           <li class="add_friends_way_item" @click="toAddFriendsByTel">
-            <img class="way_icon" src="../assets/img/lookup_tel.png"/>
+            <img class="way_icon" src="../../assets/img/lookup_tel.png"/>
             <div class="way_text">
               <p class="way_name">手机联系人</p>
               <p class="way_explain">添加通讯录中的朋友</p>
@@ -42,11 +42,11 @@
 
 <script>
 
-import HeaderNav from '../components/HeaderNav.vue'
+import HeaderNav from '../../components/HeaderNav.vue'
 
-import Scroll  from '../components/Scroll.vue'
+import Scroll  from '../../components/Scroll.vue'
 
-import T from '../tool/tool'
+import T from '../../tool/tool'
 
 export default {
   name: 'Home',
@@ -108,7 +108,7 @@ export default {
       padding-left: 65px;
       display: flex;
       align-items: center;
-      background: url(../assets/img/search_bar_icon1.png) no-repeat 30px center;
+      background: url(../../assets/img/search_bar_icon1.png) no-repeat 30px center;
       background-size: 16px auto;
       background-color: #fff;
     }
@@ -144,7 +144,7 @@ export default {
        margin-left: 12px;
        width: 16px;
        height: 16px;
-       background:url(../assets/img/code_icon.png) no-repeat 0 0;
+       background:url(../../assets/img/code_icon.png) no-repeat 0 0;
        background-size: 16px 16px;
     }
 
@@ -188,7 +188,7 @@ export default {
       top:50%;
       margin-top: -9px;
       right: 15px;
-      background:url(../assets/img/right_arrow.png) no-repeat 0 0;
+      background:url(../../assets/img/right_arrow.png) no-repeat 0 0;
       background-size: auto 18px;
     }
 

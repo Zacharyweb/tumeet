@@ -6,15 +6,15 @@
          <div class="search_result_cate">联系人</div>
          <ul class="search_result_list">
            <li class="search_result_item">
-             <img class="search_result_pic" src="../../static/timg.jpeg">
+             <img class="search_result_pic" src="../../../static/timg.jpeg">
              <span class="search_result_text">王尼玛</span>
            </li>
            <li class="search_result_item">
-             <img class="search_result_pic" src="../../static/timg.jpeg">
+             <img class="search_result_pic" src="../../../static/timg.jpeg">
              <span class="search_result_text">王尼玛</span>
            </li>
            <li class="search_result_item">
-             <img class="search_result_pic" src="../../static/timg.jpeg">
+             <img class="search_result_pic" src="../../../static/timg.jpeg">
              <span class="search_result_text">王尼玛</span>
            </li>
          </ul>
@@ -25,15 +25,15 @@
          <div class="search_result_cate">主题</div>
          <ul class="search_result_list">
            <li class="search_result_item">
-             <img class="search_result_pic" src="../../static/timg.jpeg">
+             <img class="search_result_pic" src="../../../static/timg.jpeg">
              <span class="search_result_text">王尼玛去欧洲旅行</span>
            </li>
            <li class="search_result_item">
-             <img class="search_result_pic" src="../../static/timg.jpeg">
+             <img class="search_result_pic" src="../../../static/timg.jpeg">
              <span class="search_result_text">王尼玛去欧洲旅行</span>
            </li>
            <li class="search_result_item">
-             <img class="search_result_pic" src="../../static/timg.jpeg">
+             <img class="search_result_pic" src="../../../static/timg.jpeg">
              <span class="search_result_text">王尼玛去欧洲旅行</span>
            </li>
          </ul>
@@ -44,21 +44,21 @@
          <div class="search_result_cate">对话记录</div>
          <ul class="search_result_list">
            <li class="search_result_item">
-             <img class="search_result_pic" src="../../static/timg.jpeg">
+             <img class="search_result_pic" src="../../../static/timg.jpeg">
              <div class="search_result_content">
                 <span class="search_result_text">王尼玛去欧洲旅行</span>
                 <span class="search_result_subtext">共5条相关记录</span>
              </div>
            </li>
            <li class="search_result_item">
-             <img class="search_result_pic" src="../../static/timg.jpeg">
+             <img class="search_result_pic" src="../../../static/timg.jpeg">
              <div class="search_result_content">
                  <span class="search_result_text">王尼玛去欧洲旅行</span>
                  <span class="search_result_subtext">共5条相关记录</span>
              </div>
            </li>
            <li class="search_result_item">
-             <img class="search_result_pic" src="../../static/timg.jpeg">
+             <img class="search_result_pic" src="../../../static/timg.jpeg">
              <div class="search_result_content">
                 <span class="search_result_text">王尼玛去欧洲旅行</span>
                 <span class="search_result_subtext">共5条相关记录</span>
@@ -73,9 +73,9 @@
 </template>
 
 <script>
-import SearchBar  from '../components/SearchBar.vue'
-import Scroll  from '../components/Scroll.vue'
-import T from '../tool/tool'
+import SearchBar  from '../../components/SearchBar.vue'
+import Scroll  from '../../components/Scroll.vue'
+import T from '../../tool/tool'
 export default {
   name: 'SearchResult',
   components:{
@@ -160,7 +160,7 @@ export default {
     font-size: 14px;
     color: #666;
     padding-left: 24px;
-    background: url(../assets/img/search_bar_icon1.png) no-repeat 0 center;
+    background: url(../../assets/img/search_bar_icon1.png) no-repeat 0 center;
     background-size: auto 16px;
   }
   .search_result_bottom .right_arrow{
@@ -170,7 +170,7 @@ export default {
     right: 15px;
     width: 9px;
     height: 13px;
-    background: url(../assets/img/right_arrow.png) no-repeat 0 center;
+    background: url(../../assets/img/right_arrow.png) no-repeat 0 center;
     background-size: auto 13px;
   }
 
