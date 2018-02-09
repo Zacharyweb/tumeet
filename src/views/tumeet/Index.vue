@@ -122,7 +122,7 @@ export default {
       this.$router.push({name:'CreateChat'});
     },
     toChatRoom(id){
-      this.$router.push('/chat/'+ id);
+      this.$router.push('/chat/'+ id +'/1');
     },
     initTotalNewMsg(){
       let totalNewMsg = 0;
@@ -159,7 +159,6 @@ export default {
     }
   },
   mounted(){
-      document.title = '首页';
       this.initTotalNewMsg();
 
   }

@@ -73,7 +73,7 @@ export default {
     },
   },
   mounted(){
-    document.title = '个人头像';
+   
   }
 }
 </script>

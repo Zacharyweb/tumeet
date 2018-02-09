@@ -160,7 +160,7 @@ export default {
   },
   mounted(){
       this.getcontactsData();
-      document.title = '新的朋友';
+     
   }
 }
 </script>

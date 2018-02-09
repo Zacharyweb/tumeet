@@ -18,14 +18,14 @@
                       <span v-show="item.newMsg > 0">新增信息数：<b>{{item.newMsg}}</b></span>
                     </p>
                     <span class="chat_time">{{item.time}}</span>
-                    <span class="restart_icon" v-if="item.restart == 1"  @click="restartChatStep1(item.id,index,1)"></span>
+                    <span class="restart_icon" v-if="item.restart == 1"  @click="restartChatStep1(item.id,index,1)" @touchstart.stop=""></span>
                   </div>
                 </div>
             </slider-edit-item>
 
             <div class="edit_btns">
-              <div class="edit_btn btn_blue" @click="restartChatStep1(item.id,index)">重启</div>
-              <div class="edit_btn btn_red"  @click="deleteChatStep1(item.id,index)">删除</div>
+              <div class="edit_btn btn_blue" @click.stop="restartChatStep1(item.id,index)">重启</div>
+              <div class="edit_btn btn_red"  @click.stop="deleteChatStep1(item.id,index)">删除</div>
             </div>
           </li>
         </ul>
@@ -126,7 +126,8 @@ export default {
       this.$router.push('search')
     },
     toChatRoom(id){
-      this.$router.push('/chat/'+ id);
+ 
+      this.$router.push('/chat/'+ id +'/1');
     },
     restartChatStep1(id,index,flag){
       this.isResponseRestart = false;
@@ -162,7 +163,7 @@ export default {
    
   },
   mounted(){
-      document.title = '存档';
+
   }
 }
 </script>

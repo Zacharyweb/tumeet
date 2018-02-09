@@ -69,7 +69,7 @@ export default {
     }
   },
   mounted(){
-    document.title = '个人详情';
+   
     this.friendId = this.$route.params.friendId;
     console.log(this.$route.params.friendId);
   }

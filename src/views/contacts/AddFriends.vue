@@ -83,7 +83,7 @@ export default {
    
   },
   mounted(){
-      document.title = '首页';
+     
   }
 }
 </script>

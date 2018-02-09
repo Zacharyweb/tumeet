@@ -59,6 +59,7 @@ export default {
     background-color: #67bfe7;
     display: flex;
     justify-content: space-between;
+    z-index: 10;
   }
   .header-nav-shim{
     height: 50px;

@@ -179,7 +179,7 @@ export default new Router({
      },
       //会话
       {
-        path: '/chat/:id',
+        path: '/chat/:id/:floor',
         name: 'ChatRoom',
         component: ChatRoom
       },

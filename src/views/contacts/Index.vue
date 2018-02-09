@@ -198,7 +198,7 @@ export default {
   },
   mounted(){
       this.getcontactsData();
-      document.title = '发起对话';
+    
   }
 }
 </script>

@@ -213,7 +213,8 @@ export default {
           return;
       };
       let selectedcontacts = this.selectedcontactsArr.join(',');
-      this.$router.go(-1);
+      // this.$router.go(-1);
+      this.$router.push('/chat/888/1');
     },
     cancelInputTopic(){
       this.isOnInput = false;
@@ -244,7 +245,6 @@ export default {
   },
   mounted(){
       this.getcontactsData();
-      document.title = '发起对话';
   }
 }
 </script>

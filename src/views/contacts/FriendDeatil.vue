@@ -70,11 +70,12 @@ export default {
       this.$router.push('/editFriendDeatil/' + this.friendId);
     },
     toChat(){
-      console.log(this.topicVal);
+      // console.log(this.topicVal);
+      this.$router.push('/chat/888/1');
     }
   },
   mounted(){
-    document.title = '好友详情';
+
     this.friendId = this.$route.params.friendId;
     console.log(this.$route.params.friendId);
   }
