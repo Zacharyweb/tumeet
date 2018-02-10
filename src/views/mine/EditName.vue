@@ -77,6 +77,7 @@ export default {
     height:44px;
     width: 100%;
     border:none; 
+    font-size: 16px;
   }
 
   

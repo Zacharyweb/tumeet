@@ -72,6 +72,7 @@ export default {
     .nav_left_text{
       margin-left: 6px;
       font-size: 15px;
+      white-space: nowrap;
     }
     .yo-scroll{
       background-color: rgba(0,0,0,0.8);

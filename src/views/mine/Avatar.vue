@@ -40,7 +40,7 @@ export default {
   data () {
     return {
        actionSelectShow:false,
-       avatarUrl:'../../../static/timg.jpeg'
+       avatarUrl:'http://www.zjresume.com/tumeet/timg.jpeg'
     }
   },
   methods:{
@@ -88,6 +88,7 @@ export default {
     .nav_left_text{
       margin-left: 6px;
       font-size: 15px;
+      white-space: nowrap;
     }
 
     .yo-scroll{
@@ -95,7 +96,7 @@ export default {
     }
     .avatar-img{
       width: 100%;
-      margin-top: 30%;
+      margin-top: 25%;
     }
 
 

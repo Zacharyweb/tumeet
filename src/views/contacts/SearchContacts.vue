@@ -32,14 +32,14 @@ export default {
       resultList: [
         {
           name:'Alili',
-          avatar:'../../../static/timg.jpeg',
+          avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
           id:'0',
           tumeet:'alang1987',
           added:1
         },
         {
           name:'爱丽丝',
-          avatar:'../../../static/timg.jpeg',
+          avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
           id:'1',
           tumeet:'alang1987',
           added:0

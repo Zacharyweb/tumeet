@@ -118,7 +118,7 @@ export default {
           chatType:1, // 1:文字内容 2:图片内容 3:语音内容
           speakerId:2,
           id:'111111',
-          avatar:'../../../static/timg.jpeg',
+          avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
           creationTime:'2017-08-09',
           hasSubTopic:1,
           subTopicMsgNum:6
@@ -128,7 +128,7 @@ export default {
           chatType:1, // 1:文字内容 2:图片内容 3:语音内容
           speakerId:1,
           id:'22222222',
-          avatar:'../../../static/timg.jpeg',
+          avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
           hasSubTopic:1,
           subTopicMsgNum:0
         },
@@ -137,7 +137,7 @@ export default {
           chatType:1, // 1:文字内容 2:图片内容 3:语音内容
           speakerId:2,
           id:'111112222222221',
-          avatar:'../../../static/timg.jpeg',
+          avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
           creationTime:'2017-08-09',
           hasSubTopic:0,
           subTopicMsgNum:0
@@ -145,7 +145,7 @@ export default {
         {
           chatType:3,
           content:'https://code.ziqiangxuetang.com/demo/horse.ogg',
-          avatar:'../../../static/timg.jpeg',
+          avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
           id:'66611',
           speakerId:1,
           voiceLength:30,
@@ -155,7 +155,7 @@ export default {
         {
           chatType:3,
           content:'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46',
-          avatar:'../../../static/timg.jpeg',
+          avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
           id:'66213',
           speakerId:1,
           voiceLength:60
@@ -163,16 +163,16 @@ export default {
         },
         {
           chatType:2,
-          avatar:'../../../static/timg.jpeg',
+          avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
           id:'6631asd23',
           speakerId:1,
-          content:'../../../static/timg.jpeg',
+          content:'http://www.zjresume.com/tumeet/timg.jpeg',
 
         },
         {
           chatType:3,
           content:'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46',
-          avatar:'../../../static/timg.jpeg',
+          avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
           id:'6661213211',
           speakerId:1,
           voiceLength:30,
@@ -182,7 +182,7 @@ export default {
         {
           chatType:3,
           content:'https://code.ziqiangxuetang.com/demo/horse.ogg',
-          avatar:'../../../static/timg.jpeg',
+          avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
           id:'66221313',
           speakerId:1,
           voiceLength:60,
@@ -192,10 +192,10 @@ export default {
         },
         {
           chatType:2,
-          avatar:'../../../static/timg.jpeg',
+          avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
           id:'663122121321323',
           speakerId:1,
-          content:'../../../static/timg.jpeg',
+          content:'http://www.zjresume.com/tumeet/timg.jpeg',
           fromSave:1
 
         },
@@ -204,7 +204,7 @@ export default {
           chatType:1, // 1:文字内容 2:图片内容 3:语音内容
           speakerId:1,
           id:'2222222131222',
-          avatar:'../../../static/timg.jpeg',
+          avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
           hasSubTopic:1,
           subTopicMsgNum:0,
           fromSave:1

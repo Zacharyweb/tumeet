@@ -85,7 +85,7 @@ export default {
           abstract:'跳转界面的设计与更新',
           newMsg:9,
           time:'下午16:56',
-          coverImg:'../../../static/timg.jpeg',
+          coverImg:'http://www.zjresume.com/tumeet/timg.jpeg',
           id:1,
         },
         {
@@ -93,7 +93,7 @@ export default {
           abstract:'跳转界面的设计与更新',
           newMsg:2,
           time:'2017/8/6',
-          coverImg:'../../../static/timg.jpeg',
+          coverImg:'http://www.zjresume.com/tumeet/timg.jpeg',
           id:2222,
         },
         {
@@ -101,7 +101,7 @@ export default {
           abstract:'跳转界面的设计与更新',
           newMsg:0,
           time:'2017/8/5',
-          coverImg:'../../../static/timg.jpeg',
+          coverImg:'http://www.zjresume.com/tumeet/timg.jpeg',
           id:333,
         },
       ],

@@ -81,13 +81,13 @@ export default {
           list:[
             {
               name:'Alili',
-              avatar:'../../../static/timg.jpeg',
+              avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
               id:'0',
               tumeet:'alang1987'
             },
             {
               name:'爱丽丝',
-              avatar:'../../../static/timg.jpeg',
+              avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
               id:'1',
               tumeet:'alang1987'
             }
@@ -98,19 +98,19 @@ export default {
           list:[
             {
               name:'Banana',
-              avatar:'../../../static/timg.jpeg',
+              avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
               id:'3',
               tumeet:'alang1987'
             },
             {
               name:'包公',
-              avatar:'../../../static/timg.jpeg',
+              avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
               id:'4',
               tumeet:'alang1987'
             },
             {
               name:'宝宝抱抱',
-              avatar:'../../../static/timg.jpeg',
+              avatar:'http://www.zjresume.com/tumeet/timg.jpeg',
               id:'66',
               tumeet:'alang1987'
             }
@@ -175,6 +175,7 @@ export default {
     .nav_left_text{
       margin-left: 6px;
       font-size: 15px;
+      white-space: nowrap;
     }
     
     .add_friends_trigger{

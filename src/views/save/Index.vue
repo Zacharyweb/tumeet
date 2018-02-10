@@ -88,7 +88,7 @@ export default {
             newMsg:0,
             totalMsg:6,
             time:'下午16:56',
-            coverImg:'../../../static/timg.jpeg',
+            coverImg:'http://www.zjresume.com/tumeet/timg.jpeg',
             id:1,
             restart:0
           },
@@ -98,7 +98,7 @@ export default {
             newMsg:2,
             totalMsg:8,
             time:'2017/8/6',
-            coverImg:'../../../static/timg.jpeg',
+            coverImg:'http://www.zjresume.com/tumeet/timg.jpeg',
             id:2222,
             restart:1
           },
@@ -108,7 +108,7 @@ export default {
             newMsg:4,
             totalMsg:8,
             time:'2017/8/5',
-            coverImg:'../../../static/timg.jpeg',
+            coverImg:'http://www.zjresume.com/tumeet/timg.jpeg',
             id:333,
             restart:0
           },

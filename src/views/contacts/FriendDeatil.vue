@@ -92,6 +92,7 @@ export default {
     .nav_left_text{
       margin-left: 6px;
       font-size: 15px;
+      white-space: nowrap;
     }
 
     .friend_msg_wrap{

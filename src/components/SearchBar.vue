@@ -99,7 +99,7 @@ export default {
     background-color:#fff;
     color:#333;
     font-size:14px;
-    line-height:36px;
+/*    line-height:36px;*/
   }
   input::-webkit-input-placeholder{ 
     color: #b5b5b5;
