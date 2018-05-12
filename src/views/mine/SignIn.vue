@@ -21,6 +21,7 @@
 
 <script>
 import HeaderNav from '../../components/HeaderNav.vue'
+import {mapState,mapActions} from 'vuex'
 export default {
   name: 'SignIn',
   components:{
@@ -53,8 +54,69 @@ export default {
     signIn(){
       let tel = this.tel;
       let code = this.code;
-      this.$router.push('/');
-    }
+      localStorage.setItem('apiUid',tel);
+      localStorage.setItem('accessToken',code);
+  
+      this.$store.commit('saveUserMsg',{apiUid:tel,accessToken:code});
+      const redirect = decodeURIComponent(this.$route.query.redirect || '/');
+  
+      this.$router.replace({path: redirect});
+      // this.axios.get('get',{params:{name:'zj',age:25}});
+      // this.axios.post('post',{name:'wmj',age:24});
+    },
+      // loginByPassword(){
+      //       if(this.ajaxing){
+      //            return;
+      //       }
+      //       if(this.mobile == ''){
+      //           this.showMsg({content:'手机号码不能为空！'});return;
+      //       }
+
+      //       if(!/^1[3-8]\d{9}$/.test(this.mobile)){
+      //           this.showMsg({content:'输入的手机号码格式有误'});return;
+      //       }
+
+      //       if(this.password == ''){
+      //          this.showMsg({content:'密码不能为空'});return;
+      //       }
+
+      //       if(!/^(?![\d]+$)(?![a-zA-Z]+$)(?![^\da-zA-Z]+$)[^\s]{6,18}$/.test(this.password)){
+      //           this.showMsg({content:'密码格式有误'});return;
+      //       }
+
+      //     let data={
+      //       mobile:this.mobile,
+      //       password:this.password
+      //     }
+      //       this.axios.post(api.loginByPassword,data).then(res => {
+      //           if(res.data.code=='0'){
+      //               this.handleLoginAfter(res.data.result)
+      //           }
+      //       })
+      //   },
+      //   handleLoginAfter(result){
+      //       const redirect = decodeURIComponent(this.$route.query.redirect || '/'),
+      //               source = this.$route.query.source;
+            
+      //       localStorage.setItem('LR_APIUID',result.uid);
+      //       localStorage.setItem('LR_ACCESSTOKEN',result.accessToken);
+      //       localStorage.setItem('LR_USER',JSON.stringify(result));
+      //       this.$store.commit(types.RECEIVE_USERINFO,result);
+      //       this.$store.commit(types.SUCCESS_LOGIN,{uid:result.uid,accessToken:result.accessToken});
+      //       // 活动工程登录状态跨域方案
+      //       let activityIp=httpConfig.activityIp
+      //       let csCookie = new CSCookie(activityIp);
+      //       csCookie.setItem('LR_ACCESSTOKEN',result.accessToken);
+      //       csCookie.setItem('LR_APIUID',result.uid);
+      //       csCookie.init(()=>{
+      //           if(source){
+      //               // window.location.href = redirect;
+      //               window.location.replace(redirect);
+      //           }else{
+      //               this.$router.replace({path: redirect})
+      //           }
+      //       });
+      //   },
   },
   mounted(){
      
